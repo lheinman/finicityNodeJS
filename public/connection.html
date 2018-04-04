@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <script src="https://connect.finicity.com/assets/sdk/finicity-connect.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        window.onload = $.post('http://localhost:3000/connection'/*, customerData*/).done(function (response) {
+            var customerId = response.customerId;
+            var consumerId = response.consumerId;
+            var finicityConnectUrl = response.finicityConnectUrl;
+
+            window.finicityConnect.connectIFrame(finicityConnectUrl, {
+                success: function (data) {
+                    if (data.reportId) {
+                        console.log("Yay! We got reportId", data.reportId);
+                        //Pass data back to your server once Finicity Connect finishes
+                        $.post("customers/get-report", {
+                            reportId: data.reportId,
+                            consumerId: data.consumerId,
+                            customerId: data.customerId
+                        }).done(function (response) {
+                            console.log('Yay, done!', response)
+                        })
+                    } else {
+                        console.log('The user finished, but added no accounts, so no report id exists');
+                    }
+                },
+                cancel: function () {
+                    console.log('The user cancelled the iframe');
+                },
+                error: function (err) {
+                    console.error('Some runtime error was generated during Finicity Connect', err);
+                },
+                loaded: function () {
+                    console.log('This gets called only once after the iframe has finished loading');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
