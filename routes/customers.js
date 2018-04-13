@@ -82,7 +82,7 @@ router.post('/', function (req, res) {
                             res.send("customer created");
                         } else {
                             console.log(finicity);
-                            res.send(finicity);
+                            res.send("error: " + response.statusCode + " - " + finicity);
                         }
                     }
                 );
@@ -126,7 +126,7 @@ router.delete('/', function(req, res, next) {
                             res.send("customer deleted");
                         } else {
                             console.log(finicity);
-                            res.send(finicity);
+                            res.send("error: " + response.statusCode + " - " + finicity);
                         }
                     }
                 );

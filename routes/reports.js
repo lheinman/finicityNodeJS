@@ -82,7 +82,7 @@ router.post('/', function(req, res, next) {
                                 }
                             );
                         } else {
-                            res.send(body);
+                            res.send("error: " + response.statusCode + " - " + body);
                         }
                     }
                 );

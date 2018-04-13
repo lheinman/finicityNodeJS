@@ -61,7 +61,7 @@ router.post('/', function (req, res) {
                             });
                         } else {
                             console.log(body);
-                            res.send(body);
+                            res.send("error: " + response.statusCode + " - " + finicity);
                         }
                     }
                 );
